@@ -14,7 +14,7 @@ Note: Due to the simple nature of this test application, please reload the page 
 <li><a href="javascript:post('POST','/companies.json',<%= @company_post_existing_json %>)">POST to /companies.json</a>
 <li><a href="javascript:post('PUT','/companies.json',<%= @company_post_existing_json %>)">PUT new (no id) to /companies.json</a>
   <% if @company_id %>
-<li><a href="/companies/<%= @company_id %>">GET /companies/<%= @company_id %></a><br/>
+<li><a href="/companies/<%= @company_id %>.json">GET /companies/<%= @company_id %>.json</a><br/>
 <li><a href="javascript:post('PUT','/companies/<%= @company_id %>.json',<%= @company_post_existing_json %>)">PUT existing to /companies/<%= @company_id %>.json</a>
 <li><a href="javascript:post('PUT','/companies/<%= @company_id %>.json',<%= @company_post_existing_json %>)">PUT existing to /companies/<%= @company_id %>.json</a>
 <li><a href="javascript:delete('DELETE','/companies/<%= @company_id %>.json',<%= @company_post_existing_json %>)">DELETE to /companies/<%= @company_id %>.json</a>
@@ -27,7 +27,7 @@ Note: Due to the simple nature of this test application, please reload the page 
 <li><a href="javascript:post('POST','/employees.json',<%= @employee_post_existing_json %>)">POST to /employees.json</a>
 <li><a href="javascript:post('PUT','/employees.json',<%= @employee_post_existing_json %>)">PUT new (no id) to /employees.json</a>
     <% if @employee_id %>
-<li><a href="/employees/<%= @employee_id %>">GET /employees/<%= @employee_id %></a><br/>
+<li><a href="/employees/<%= @employee_id %>.json">GET /employees/<%= @employee_id %>.json</a><br/>
 <li><a href="javascript:post('PUT','/employees/<%= @employee_id %>.json',<%= @employee_post_existing_json %>)">PUT existing to /employees/<%= @employee_id %>.json</a>
 <li><a href="javascript:post('PUT','/employees/<%= @employee_id %>.json',<%= @employee_post_existing_json %>)">PUT existing to /employees/<%= @employee_id %>.json</a>
 <li><a href="javascript:delete('DELETE','/employees/<%= @employee_id %>.json',<%= @employee_post_existing_json %>)">DELETE to /employees/<%= @employee_id %>.json</a>
