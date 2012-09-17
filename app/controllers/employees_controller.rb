@@ -1,4 +1,6 @@
 class EmployeesController < ApplicationController
+  include Roar::Rails::ControllerAdditions
+  
   respond_to :json
   
   # GET /employees

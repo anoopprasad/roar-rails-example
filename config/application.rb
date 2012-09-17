@@ -58,5 +58,8 @@ module RoarRailsExample
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # For hypermedia links in ROAR to work
+    config.representer.default_url_options = {:host => "127.0.0.1:3000"}
   end
 end
