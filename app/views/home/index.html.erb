@@ -1,0 +1,16 @@
+<h1>roar-rails-example</h1>
+
+<% if ActiveRecord::Base.connection.tables.include?('companies') %>
+<p>
+This only tests the JSON GET methods currently. Feel free to fork and add more behavior.
+</p>
+<p>
+Test URLS:<br/>
+<a href="/companies">/companies</a><br/>
+<a href="/companies/1">/companies/1</a><br/>
+<a href="/employees">/employees</a><br/>
+<a href="/employees/1">/employees/1</a><br/>
+</p>
+<% else %>
+The schema has not been created in the test database. Please stop the application, run rake db:migrate, and then restart. Thanks!
+<% end %>
