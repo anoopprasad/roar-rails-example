@@ -7,6 +7,10 @@ There is an initializer that will populate a local SQLite database with sample d
 
 This is meant to be a barebones example. For a more complete example, please see [elvanja/roar_example][roar_example].
 
+### Parameter wrapping
+
+Change defaults in config/initializers/wrap_parameters.rb.
+
 ### Setup
 
 After installing Ruby 1.9.3 and Rails 3.2.x:
