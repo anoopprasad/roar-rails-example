@@ -1,7 +1,7 @@
 roar-rails-example
 =====
 
-A sample application that shows how you can use roar-rails to enable controllers.
+A sample application that shows how you can use [roar-rails][roar-rails] to enable controllers.
 
 Currently only has a page that has links to four GET links to see JSON that test index and show on two prepopulated example models- employee and company, but you can do POST/PUT and DELETE to it also, i.e. it provides restful resource routing for JSON services for two prepopulated models.
 
@@ -23,5 +23,6 @@ Then browse to: [http://localhost:3000/][localhost]
 
 Copyright (c) 2012 Gary S. Weaver, released under the [MIT license][lic].
 
+[roar-rails]: https://github.com/apotonick/roar-rails
 [localhost]: http://localhost:3000/
 [lic]: http://github.com/garysweaver/roar-rails-example/blob/master/LICENSE
