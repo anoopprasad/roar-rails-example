@@ -7,6 +7,8 @@ module EmployeeRepresenter
   
   property :name
   property :id
+  #property :company
+
   
   link :self do
     employee_url(self.id)

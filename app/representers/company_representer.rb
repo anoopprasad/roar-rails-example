@@ -8,7 +8,7 @@ module CompanyRepresenter
   property :name
   property :id
   
-  collection :employees, :class => Employee
+  collection :employees, :extend => EmployeeRepresenter, :class => Employee
   
   # requires this in environment.rb or similar: config.representer.default_url_options = {:host => "127.0.0.1:3000"}
   link :self do

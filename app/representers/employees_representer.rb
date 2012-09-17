@@ -1,7 +1,7 @@
 require 'roar/representer/json'
 require 'roar/representer/feature/hypermedia'
 
-module CompaniesRepresenter
+module EmployeesRepresenter
   include Roar::Representer::JSON
   include Roar::Representer::Feature::Hypermedia
 
