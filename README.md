@@ -1,6 +1,8 @@
 roar-rails-example
 =====
 
+*This example is under-construction. Some functionality may not work properly or at all.*
+
 A sample application that shows how you can use [roar-rails][roar-rails] to provide JSON APIs in your controllers, with a test interface that does GETs, POSTs, PUTs, and DELETEs with two example models: Company and Employee.
 
 There is an initializer that will populate a local SQLite database with sample data when the server starts. It won't try to populate unless the schema has been created, and will warn you if the schema is not setup.
