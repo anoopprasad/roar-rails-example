@@ -9,11 +9,11 @@ class CompaniesController < ApplicationController
     begin
       @companies = Company.all
       respond_with @companies
-    rescue => e
-      puts "Caught exception in index: #{e.message} #{e.backtrace}"
+    rescue
+      puts $!.inspect, $@
       # TODO: add support for other formats
       respond_to do |format|
-        format.json { render json: {errors: [e.message]}, status: (:internal_server_error) }
+        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
       end
     end
   end
@@ -24,11 +24,11 @@ class CompaniesController < ApplicationController
     begin
       @company = Company.find(params[:id])
       respond_with @company
-    rescue => e
-      puts "Caught exception in show: #{e.message} #{e.backtrace}"
+    rescue
+      puts $!.inspect, $@
       # TODO: add support for other formats
       respond_to do |format|
-        format.json { render json: {errors: [e.message]}, status: (:internal_server_error) }
+        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
       end
     end
   end
@@ -52,11 +52,11 @@ class CompaniesController < ApplicationController
       @company = Company.new(params[:company])
       consume! @company
       respond_with @company
-    rescue => e
-      puts "Caught exception in create: #{e.message} #{e.backtrace}"
+    rescue
+      puts $!.inspect, $@
       # TODO: add support for other formats
       respond_to do |format|
-        format.json { render json: {errors: [e.message]}, status: (:internal_server_error) }
+        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
       end
     end
   end
@@ -68,11 +68,11 @@ class CompaniesController < ApplicationController
       @company = Company.find(params[:id])
       consume! @company
       respond_with @company
-    rescue => e
-      puts "Caught exception in update: #{e.message} #{e.backtrace}"
+    rescue
+      puts $!.inspect, $@
       # TODO: add support for other formats
       respond_to do |format|
-        format.json { render json: {errors: [e.message]}, status: (:internal_server_error) }
+        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
       end
     end
   end
@@ -86,11 +86,11 @@ class CompaniesController < ApplicationController
       respond_to do |format|
         format.json { head :no_content }
       end
-    rescue => e
-      puts "Caught exception in destroy: #{e.message} #{e.backtrace}"
+    rescue
+      puts $!.inspect, $@
       # TODO: add support for other formats
       respond_to do |format|
-        format.json { render json: {errors: [e.message]}, status: (:internal_server_error) }
+        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
       end
     end
   end
