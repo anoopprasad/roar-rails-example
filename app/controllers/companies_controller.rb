@@ -1,97 +1,80 @@
-class CompaniesController < ApplicationController
+require 'convenient-actionpack'
+
+class CompaniesController < ActionController::API
+  # include AbstractController::Translation # Support for the l and t localization and translation methods. These delegate to I18n.translate and I18n.localize.
+  # include ActionController::HttpAuthentication::Basic::ControllerMethods # (or Digest or Token): Support for basic, digest or token HTTP authentication.
+  # include AbstractController::Layouts # Support for layouts when rendering.
+  # include ActionController::Cookies # Support for cookies, which includes support for signed and encrypted cookies. This requires the cookie middleware.
+  include ActionController::MimeResponds
+  include Convenient::Controller
   include Roar::Rails::ControllerAdditions
 
   respond_to :json
-  
-  # GET /companies
-  # GET /companies.json
+
   def index
-    begin
+    puts "params[:action]=#{params[:action].inspect}"
+    wrap do
+      # put auth inside the wrap, e.g.
+      # raise "not allowed" unless can_index?
       @companies = Company.all
       respond_with @companies
-    rescue
-      puts $!.inspect, $@
-      # TODO: add support for other formats
-      respond_to do |format|
-        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
-      end
     end
   end
 
-  # GET /companies/1
-  # GET /companies/1.json
   def show
-    begin
+    wrap do
+      # put auth inside the wrap, e.g.
+      # raise "not allowed" unless can_show?
       @company = Company.find(params[:id])
       respond_with @company
-    rescue
-      puts $!.inspect, $@
-      # TODO: add support for other formats
-      respond_to do |format|
-        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
-      end
     end
   end
 
-  # GET /companies/new
-  # GET /companies/new.json
   def new
-    @company = Company.new
-    respond_with @company
+    wrap do
+      @company = Company.new
+      respond_with @company
+    end
   end
 
-  # GET /companies/1/edit
   def edit
-    @company = Company.find(params[:id])
-  end
-
-  # POST /companies
-  # POST /companies.json
-  def create
-    begin
-      @company = Company.new(params[:company])
-      consume! @company
-      respond_with @company
-    rescue
-      puts $!.inspect, $@
-      # TODO: add support for other formats
-      respond_to do |format|
-        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
-      end
-    end
-  end
-
-  # PUT /companies/1
-  # PUT /companies/1.json
-  def update
-    begin
+    wrap do
       @company = Company.find(params[:id])
-      consume! @company
-      respond_with @company
-    rescue
-      puts $!.inspect, $@
-      # TODO: add support for other formats
-      respond_to do |format|
-        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
+    end
+  end
+
+  def create
+    if params[:id]
+      update
+    else
+      wrap do
+        # put auth inside the wrap, e.g.
+        # raise "not allowed" unless can_create?
+        @company = Company.new(params[:company])
+        consume! @company
+        respond_with @company
       end
     end
   end
 
-  # DELETE /companies/1
-  # DELETE /companies/1.json
+  def update
+    if params[:id]
+      wrap do
+        # put auth inside the wrap, e.g.
+        # raise "not allowed" unless can_update?
+        @company = Company.find(params[:id])
+        consume! @company
+        respond_with @company
+      end
+    end
+  end
+
   def destroy
-    begin
+    wrap do
       @company = Company.find(params[:id])
       @company.destroy
-      respond_to do |format|
-        format.json { head :no_content }
-      end
-    rescue
-      puts $!.inspect, $@
-      # TODO: add support for other formats
-      respond_to do |format|
-        format.json { render json: {errors: [$!.message]}, status: (:internal_server_error) }
-      end
+      respond_with @company
     end
   end
+
 end

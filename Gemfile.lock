@@ -1,3 +1,26 @@
+GIT
+  remote: git://github.com/garysweaver/convenient-actionpack.git
+  revision: 74644ce9de8af2793f3fed8309e26173c88199c8
+  specs:
+    convenient-actionpack (0.0.1)
+      actionpack (>= 3.1.0)
+
+PATH
+  remote: ~/github/roar
+  specs:
+    roar (0.11.3)
+      representable (>= 1.2.2)
+
+PATH
+  remote: ~/github/roar-rails
+  specs:
+    roar-rails (0.0.10)
+      actionpack (~> 3.0)
+      hooks
+      railties (~> 3.0)
+      roar (~> 0.10)
+      test_xml
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,6 +94,10 @@ GEM
       activesupport (= 3.2.6)
       bundler (~> 1.0)
       railties (= 3.2.6)
+    rails-api (0.0.2)
+      actionpack (>= 3.2.0)
+      railties (>= 3.2.0)
+      tzinfo (~> 0.3.31)
     railties (3.2.6)
       actionpack (= 3.2.6)
       activesupport (= 3.2.6)
@@ -84,14 +111,6 @@ GEM
     representable (1.2.5)
       json
       nokogiri
-    roar (0.11.3)
-      representable (>= 1.2.2)
-    roar-rails (0.0.10)
-      actionpack (~> 3.0)
-      hooks
-      railties (~> 3.0)
-      roar (~> 0.10)
-      test_xml
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -119,9 +138,12 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  convenient-actionpack!
   jquery-rails
   rails (= 3.2.6)
-  roar-rails
+  rails-api
+  roar!
+  roar-rails!
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)

@@ -37,4 +37,9 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem 'roar-rails'
+gem 'rails-api'
+gem 'convenient-actionpack', :git => 'git://github.com/garysweaver/convenient-actionpack.git'
+
+#gem 'roar-rails'
+gem 'roar-rails', :path => "~/github/roar-rails"
+gem 'roar', :path => "~/github/roar"
