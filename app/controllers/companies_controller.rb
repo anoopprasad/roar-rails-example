@@ -50,8 +50,8 @@ class CompaniesController < ActionController::API
       wrap do
         # put auth inside the wrap, e.g.
         # raise "not allowed" unless can_create?
-        @company = Company.new(params[:company])
-        consume! @company
+        @company = consume!(Company.new).save
+        @company.save
         respond_with @company
       end
     end
@@ -62,8 +62,10 @@ class CompaniesController < ActionController::API
       wrap do
         # put auth inside the wrap, e.g.
         # raise "not allowed" unless can_update?
-        @company = Company.find(params[:id])
-        consume! @company
+        puts "original: #{Company.find(params[:id]).inspect}"
+        @company = consume!(Company.find(params[:id]))
+        puts "     new: #{Company.find(params[:id]).inspect}"
+        @company.save
         respond_with @company
       end
     end
@@ -76,5 +78,9 @@ class CompaniesController < ActionController::API
       respond_with @company
     end
   end
+
+  #def on_action_error(error)
+  #  raise error # should include prior backtrace
+  #end
 
 end

@@ -1,4 +1,4 @@
-require 'convenient-actionpack/controller'
+require 'convenient-actionpack'
 
 class EmployeesController < ActionController::API
   # include AbstractController::Translation # Support for the l and t localization and translation methods. These delegate to I18n.translate and I18n.localize.
@@ -50,8 +50,8 @@ class EmployeesController < ActionController::API
       wrap do
         # put auth inside the wrap, e.g.
         # raise "not allowed" unless can_create?
-        @employee = Employee.new(params[:employee])
-        consume! @employee
+        @employee = consume!(Employee.new)
+        @employee.save
         respond_with @employee
       end
     end
@@ -62,8 +62,10 @@ class EmployeesController < ActionController::API
       wrap do
         # put auth inside the wrap, e.g.
         # raise "not allowed" unless can_update?
-        @employee = Employee.find(params[:id])
-        consume! @employee
+        puts "original: #{Employee.find(params[:id]).inspect}"
+        @employee = consume!(Employee.find(params[:id]))
+        puts "     new: #{Employee.find(params[:id]).inspect}"
+        @employee.save
         respond_with @employee
       end
     end
@@ -76,5 +78,9 @@ class EmployeesController < ActionController::API
       respond_with @employee
     end
   end
+
+  #def on_action_error(error)
+  #  raise error # should include prior backtrace
+  #end
 
 end
