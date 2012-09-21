@@ -25,7 +25,7 @@ Default Rails 3 way to handle is to change defaults in `config/initializers/wrap
 
 Note in the rails-api README it talks a little about wrap_parameters, if you are using `ActionController::API`.
 
-### Additional testing with curl
+### Testing with curl
 
     # create
     curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing"}' http://localhost:3000/companies.json
