@@ -5,8 +5,6 @@ roar-rails-example
 
 A sample application that shows how you can use [roar-rails][roar-rails] to provide JSON APIs in your controllers with two example models: Company and Employee. Assumes you will use curl or similar to test and provides sample commands.
 
-There is an initializer that will populate a local SQLite database with sample data when the server starts. It won't try to populate unless the schema has been created, and will warn you if the schema is not setup.
-
 For another example, see [elvanja/roar_example][roar_example], though I didn't test that.
 
 ### Setup
