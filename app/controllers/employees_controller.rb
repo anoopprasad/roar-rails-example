@@ -1,86 +1,73 @@
-require 'convenient-actionpack'
+#require 'convenient-actionpack'
 
-class EmployeesController < ActionController::API
+#class EmployeesController < ActionController::API
+class EmployeesController < ApplicationController
+
   # include AbstractController::Translation # Support for the l and t localization and translation methods. These delegate to I18n.translate and I18n.localize.
   # include ActionController::HttpAuthentication::Basic::ControllerMethods # (or Digest or Token): Support for basic, digest or token HTTP authentication.
   # include AbstractController::Layouts # Support for layouts when rendering.
   # include ActionController::Cookies # Support for cookies, which includes support for signed and encrypted cookies. This requires the cookie middleware.
-  include ActionController::MimeResponds
-  include Convenient::Controller
+  
+  #include ActionController::MimeResponds
+  #include Convenient::Controller
+  
   include Roar::Rails::ControllerAdditions
 
   respond_to :json
 
   def index
-    puts "params[:action]=#{params[:action].inspect}"
-    wrap do
+    #wrap do
       # put auth inside the wrap, e.g.
       # raise "not allowed" unless can_index?
       @employees = Employee.all
       respond_with @employees
-    end
+    #end
   end
 
   def show
-    wrap do
+    #wrap do
       # put auth inside the wrap, e.g.
       # raise "not allowed" unless can_show?
       @employee = Employee.find(params[:id])
       respond_with @employee
-    end
+    #end
   end
 
   def new
-    wrap do
+    #wrap do
       @employee = Employee.new
       respond_with @employee
-    end
+    #end
   end
 
   def edit
-    wrap do
+    #wrap do
       @employee = Employee.find(params[:id])
-    end
+    #end
   end
 
   def create
-    if params[:id]
-      update
-    else
-      wrap do
-        # put auth inside the wrap, e.g.
-        # raise "not allowed" unless can_create?
-        @employee = consume!(Employee.new)
-        @employee.save
-        respond_with @employee
-      end
-    end
+    #wrap do
+      @employee = consume!(Employee.new)
+      @employee.save
+      respond_with @employee
+    #end
   end
 
   def update
-    if params[:id]
-      wrap do
-        # put auth inside the wrap, e.g.
-        # raise "not allowed" unless can_update?
-        puts "original: #{Employee.find(params[:id]).inspect}"
-        @employee = consume!(Employee.find(params[:id]))
-        puts "     new: #{Employee.find(params[:id]).inspect}"
-        @employee.save
-        respond_with @employee
-      end
-    end
+    #wrap do
+      @employee = consume!(Employee.find(params[:id]))
+      @employee.save
+      respond_with @employee
+    #end
   end
 
   def destroy
-    wrap do
+    #wrap do
       @employee = Employee.find(params[:id])
       @employee.destroy
       respond_with @employee
-    end
+    #end
   end
-
-  #def on_action_error(error)
-  #  raise error # should include prior backtrace
-  #end
 
 end

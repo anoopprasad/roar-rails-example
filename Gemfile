@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -37,9 +37,9 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem 'rails-api'
-gem 'convenient-actionpack', :git => 'git://github.com/garysweaver/convenient-actionpack.git'
+#gem 'rails-api'
+#gem 'convenient-actionpack', :git => 'git://github.com/garysweaver/convenient-actionpack.git'
 
-#gem 'roar-rails'
-gem 'roar-rails', :path => "~/github/roar-rails"
-gem 'roar', :path => "~/github/roar"
+gem 'roar-rails'
+#gem 'roar-rails', :path => "~/github/roar-rails"
+#gem 'roar', :path => "~/github/roar"

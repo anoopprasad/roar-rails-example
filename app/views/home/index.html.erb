@@ -2,39 +2,29 @@
 
 <% if ActiveRecord::Base.connection.tables.include?('companies') %>
 <p>
-This only tests the JSON GET methods currently. Feel free to fork and add more behavior.
+This project creates REST-ish companies and employees services.
 </p>
 <p>
-Note: Due to the simple nature of this test application, please reload the page to get new sample ids before performing each action. Also, delete does not use roar-rails, since delete does not require or emit JSON.
-<p>
-<h2>Test JSON services</h2>
-<h3>Companies</h3>
-<ul>
-<li><a href="/companies.json">GET /companies.json</a><br/>
-<li><a href="javascript:post('POST','/companies.json',<%= @company_post_existing_json %>)">POST to /companies.json</a>
-<li><a href="javascript:post('PUT','/companies.json',<%= @company_post_existing_json %>)">PUT new (no id) to /companies.json</a>
-  <% if @company_id %>
-<li><a href="/companies/<%= @company_id %>.json">GET /companies/<%= @company_id %>.json</a><br/>
-<li><a href="javascript:post('PUT','/companies/<%= @company_id %>.json',<%= @company_post_existing_json %>)">PUT existing to /companies/<%= @company_id %>.json</a>
-<li><a href="javascript:post('DELETE','/companies/<%= @company_id %>.json',null)">DELETE to /companies/<%= @company_id %>.json</a>
-  <% end %>
-</ul>
-<h3>Employees</h3>
-<ul>
-<li><a href="/employees.json">GET /employees.json</a><br/>
-  <% if @company_id %>
-<li><a href="javascript:post('POST','/employees.json',<%= @employee_post_existing_json %>)">POST to /employees.json</a>
-<li><a href="javascript:post('PUT','/employees.json',<%= @employee_post_existing_json %>)">PUT new (no id) to /employees.json</a>
-    <% if @employee_id %>
-<li><a href="/employees/<%= @employee_id %>.json">GET /employees/<%= @employee_id %>.json</a><br/>
-<li><a href="javascript:post('PUT','/employees/<%= @employee_id %>.json',<%= @employee_post_existing_json %>)">PUT existing to /employees/<%= @employee_id %>.json</a>
-<li><a href="javascript:post('DELETE','/employees/<%= @employee_id %>.json',null)">DELETE to /employees/<%= @employee_id %>.json</a>
-    <% end %>
-  <% end %>
-</ul>
-</p>
+In a separate terminal window, assuming you have curl, you can use commands like the following to test:
+<pre>
+# create
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing"}' http://localhost:3000/companies.json
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing","company_id":1}' http://localhost:3000/employees.json
+# index
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies.json
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees.json
+# show
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies/1.json
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees/1.json
+# update
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/companies/1.json
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/employees/1.json
+# destroy
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/companies/1.json
+curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/employees/1.json
+</pre>
 <% else %>
-The schema has not been created in the test database. Please stop the application, run rake db:migrate, and then restart. Thanks!
+The schema has not been created in the test database. Please stop the application, run rake db:migrate, and then restart.
 <% end %>
 <br/>
 <hr/>
