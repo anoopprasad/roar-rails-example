@@ -5,23 +5,26 @@
 This project creates REST-ish companies and employees services.
 </p>
 <p>
-In a separate terminal window, assuming you have curl, you can use commands like the following to test:
+In a separate terminal window, assuming you have curl, you can use commands like the following to test.
+</p>
+<p>
+Per Nick, we don't have to send in `.json` because of the Accept header, which is the most RESTful way to pass in a format, despite Rails historically doing the path extension thing:
 <pre>
-# create
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing"}' http://localhost:3000/companies.json
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing","company_id":1}' http://localhost:3000/employees.json
-# index
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies.json
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees.json
-# show
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies/1.json
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees/1.json
-# update
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/companies/1.json
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/employees/1.json
-# destroy
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/companies/1.json
-curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/employees/1.json
+    # create
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing"}' http://localhost:3000/companies
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing","company_id":1}' http://localhost:3000/employees
+    # index
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees
+    # show
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies/1
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees/1
+    # update
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/companies/1
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/employees/1
+    # destroy
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/companies/1
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/employees/1
 </pre>
 <% else %>
 The schema has not been created in the test database. Please stop the application, run rake db:migrate, and then restart.

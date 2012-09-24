@@ -1,9 +1,7 @@
 roar-rails-example
 =====
 
-*This example is under-construction. Some functionality may not work properly or at all.*
-
-A sample application that shows how you can use [roar-rails][roar-rails] to provide JSON APIs in your controllers with two example models: Company and Employee. Assumes you will use curl or similar to test and provides sample commands.
+A simple sample application that shows how you can use [roar-rails][roar-rails] to provide JSON APIs in your controllers with two example models: Company and Employee. Assumes you will use curl or similar to test and provides sample commands.
 
 For another example, see [elvanja/roar_example][roar_example], though I didn't test that.
 
@@ -27,34 +25,27 @@ Note in the rails-api README it talks a little about wrap_parameters, if you are
 
 ### Testing with curl
 
+Per Nick, we don't have to send in `.json` because of the Accept header, which is the most RESTful way to pass in a format, despite Rails historically doing the path extension thing:
+
     # create
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing"}' http://localhost:3000/companies.json
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing","company_id":1}' http://localhost:3000/employees.json
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing"}' http://localhost:3000/companies
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"name":"testing","company_id":1}' http://localhost:3000/employees
     # index
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies.json
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees.json
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees
     # show
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies/1.json
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees/1.json
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/companies/1
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X GET http://localhost:3000/employees/1
     # update
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/companies/1.json
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/employees/1.json
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/companies/1
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X PUT -d '{"name":"testing update"}' http://localhost:3000/employees/1
     # destroy
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/companies/1.json
-    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/employees/1.json
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/companies/1
+    curl -v -H "Content-Type: application/json" -H "Accept: application/json" -X DELETE http://localhost:3000/employees/1
 
 ### Resetting data
 
-At your own risk, do:
-
-    rails c
-    Employee.delete_all
-    Contact.delete_all
-    exit
-
-### Problems
-
-Does not actually set anything in consume! currently, so objects are unaltered from incoming request whether params are wrapped or not. May be version-specific issue or implementation issue.
+At your own risk, drop the sqlite db so that sequences and data are reset, otherwise the test curl commands may fail on some ids.
 
 ### License
 
