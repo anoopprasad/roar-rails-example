@@ -40,6 +40,9 @@ gem 'jquery-rails'
 #gem 'rails-api'
 #gem 'convenient-actionpack', :git => 'git://github.com/garysweaver/convenient-actionpack.git'
 
-gem 'roar-rails'
+# bug in v0.0.10 fixed in master 2012-09-24 by this commit: https://github.com/apotonick/roar-rails/commit/5ae4b28bdb9928ff5685262850d99cb53e81e83f
+#gem 'roar-rails'
+gem 'roar-rails', :git => 'git://github.com/apotonick/roar-rails.git'
 #gem 'roar-rails', :path => "~/github/roar-rails"
+
 #gem 'roar', :path => "~/github/roar"

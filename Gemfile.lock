@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/apotonick/roar-rails.git
+  revision: 5ae4b28bdb9928ff5685262850d99cb53e81e83f
+  specs:
+    roar-rails (0.0.10)
+      actionpack (~> 3.0)
+      hooks
+      railties (~> 3.0)
+      roar (~> 0.10)
+      test_xml
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -86,12 +97,6 @@ GEM
       nokogiri
     roar (0.11.3)
       representable (>= 1.2.2)
-    roar-rails (0.0.10)
-      actionpack (~> 3.0)
-      hooks
-      railties (~> 3.0)
-      roar (~> 0.10)
-      test_xml
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -121,7 +126,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   rails (= 3.2.8)
-  roar-rails
+  roar-rails!
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
